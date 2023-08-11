@@ -1,11 +1,11 @@
-class Solution {
+class Solution1 {
 public:
     vector<vector<int>>dp;
     bool solve(int i,int j,vector<int>&nums,int m){
         if(i>j) return false;
         if(j-i+1==2) return true;
         if(dp[i][j]!=-1) return dp[i][j];
-        
+
         int sum=0;
         for(int k=i;k<=j;k++) sum+=nums[k];
 
@@ -27,6 +27,23 @@ public:
         return solve(0,n-1,nums,m);
     }
 };
+
+class Solution{
+public:
+
+    bool canSplitArray(vector<int>& nums, int m) {
+        int n=nums.size();
+        if(n==1 or n==2) return true;
+        
+        for(int i=0;i<nums.size()-1;i++){
+            if(nums[i]+nums[i+1] >= m) return true;
+        }
+
+        return false;
+    }
+};
+
+
 // 2 3 3 2 3
 // 3 3 2 3
 // 3 2 3
