@@ -22,6 +22,8 @@ public:
         Node* t = newlist , *tmp = head;
         map<Node*,Node*>mp;
 
+        //making temprorarry list attaching with original list
+
         while(tmp!=NULL){
             Node* node  = new Node(tmp->val);
             Node* nxt = tmp->next;
@@ -29,9 +31,11 @@ public:
             node ->next = nxt;
             tmp=nxt;
         }
+
+
         tmp=head;
         Node* anshead = head->next;
-
+        // changing the random pointers
         while(tmp!=NULL){
             if(tmp->random==NULL){
                 tmp->next->random=NULL;
@@ -41,6 +45,7 @@ public:
             tmp=tmp->next->next;
         }
 
+        //seprating the both list
         tmp=head;
         while(tmp!=NULL){
             Node* t1 = tmp->next->next;
