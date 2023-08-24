@@ -21,22 +21,27 @@ public:
         v.pop_back();
 
         return false;
+    }
 
+
+    TreeNode* solve1(TreeNode*root,TreeNode*p,TreeNode*q){
+        if(root==NULL) return NULL;
+        if(root->val == p->val) return root;
+        if(root->val == q->val) return root;
+
+        TreeNode* l = solve1(root->left,p,q);
+        TreeNode* r = solve1(root->right,p,q);
+
+        if(l==NULL) return r;
+        if(r==NULL) return l;
+
+        if(l==NULL and r==NULL) return NULL;
+
+        return root;
     }
 
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        vector<TreeNode*>v1,v2;
 
-        if(solve(root,v1,p->val) and solve(root,v2,q->val)){
-            int i=0;
-            while(i<v1.size() and i<v2.size()){
-                if(v1[i]->val!=v2[i]->val) break;
-
-                i++;
-            }
-            return v1[i-1];
-        }
-
-        return root;
+        return solve1(root,p,q);
     }
 };
