@@ -37,10 +37,11 @@ public:
         Node* anshead = head->next;
         // changing the random pointers
         while(tmp!=NULL){
-            if(tmp->random==NULL){
+            Node* t1 = tmp->random; 
+            if(t1==NULL){
                 tmp->next->random=NULL;
             }else{
-                tmp->next->random = tmp->random->next;
+                tmp->next->random = t1->next;
             }
             tmp=tmp->next->next;
         }
