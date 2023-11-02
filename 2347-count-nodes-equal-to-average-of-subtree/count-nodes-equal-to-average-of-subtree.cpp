@@ -11,29 +11,22 @@
  */
 class Solution {
 public:
-    int ans=0,sum=0,ct=0;
+    int ans=0;
+    vector<int> solve(TreeNode* root){
+        if(root==NULL) return {0,0};
 
-    void solve1(TreeNode* root){
-        if(root!=NULL){
-            solve1(root->left);
-            sum+=root->val;
-            ct+=1;
-            solve1(root->right);
-        }
-    }
+        auto left = solve(root->left);
+        auto right = solve(root->right);
 
-    void solve(TreeNode* root){
-        if(root!=NULL){
-            solve(root->left);
-            sum=0;
-            ct=0;
-            solve1(root);
-            if(sum/ct==root->val)ans+=1;
-            solve(root->right);
-        }
+        int sum = left[0] + right[0] + root->val;
+        int nct = left[1] + right[1] + 1;
+
+        if(root->val == sum/nct) ans+=1;
+
+        return {sum,nct};
     }
     int averageOfSubtree(TreeNode* root) {
         solve(root);
-        return ans;      
+        return ans;
     }
 };
