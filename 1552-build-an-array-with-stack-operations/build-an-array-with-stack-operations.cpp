@@ -7,9 +7,7 @@ public:
             int end = target[i];
             for(int j=start;j<end;j++){
                 ans.push_back("Push");        
-            }
-            for(int j=start;j<end;j++){
-                ans.push_back("Pop");        
+                ans.push_back("Pop");
             }
             ans.push_back("Push");
             start = target[i]+1;
